@@ -1,1 +1,5 @@
+# MVC Architecture
 https://www.zacfukuda.com/blog/express-file-folder-structure
+
+# MongoDB URI
+https://mongoosejs.com/docs/connections.html

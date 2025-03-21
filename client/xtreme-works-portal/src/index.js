@@ -8,6 +8,9 @@ import { BrowserRouter } from "react-router";
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+document.getElementById("root").className = "h-full"
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>

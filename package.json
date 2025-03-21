@@ -1,0 +1,14 @@
+{
+  "name": "Xtreme Works",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "start-fe": "cd ./client/xtreme-works-portal && npm run start",
+    "start-be": "cd ./server && npm run start-development"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

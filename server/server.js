@@ -4,11 +4,13 @@ const app = express();
 
 const swaggerUI = require("swagger-ui-express");
 const swaggerConfig = require("./configs/swagger.config");
+const corsConfig = require("./utils/cors.util");
 
 const databaseConnection = require("./configs/db.config");
 
 databaseConnection();
 
+app.use(corsConfig);
 app.use(express.json({ limit: "50mb" }));
 
 app.listen(process.env.SERVER_PORT, () => {
