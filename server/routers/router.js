@@ -1,17 +1,10 @@
-const express = require("express");
+const swaggerUI = require("swagger-ui-express");
+const swaggerConfig = require("../configs/swagger.config");
 
-const userAuthController = require("../controllers/authentication.controller");
-
-const router = express.Router();
-
-router.post(
-    "/sign-up",
-    userAuthController.userSignUp
-);
-
-router.post(
-    "/sign-in",
-    userAuthController.userSignIn
-);
-
-module.exports = router;
+module.exports = Routes = (app) => {
+    app.use('/api-documentation', swaggerUI.serve, swaggerUI.setup(swaggerConfig));
+    app.use('/authentication', require("./authentication.route"));
+    app.use('/user-setting', require("./userSetting.route"));
+    app.use(require("../middlewares/errorHandler.middleware").notFoundHandler);
+    app.use(require("../middlewares/errorHandler.middleware").catchHandler);
+}

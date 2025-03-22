@@ -8,23 +8,23 @@ const validator = require("validator");
 
 const userAccountSchema = new Schema(
     {
-        first_name: {
+        firstName: {
             type: String,
             required: true,
             min: 2
         },
-        last_name: {
+        lastName: {
             type: String,
             required: true,
             min: 2
         },
         address: {
             type: {
-                primary_address_line:{
+                primaryAddressLine:{
                     type: String,
                     required: true
                 },
-                secondary_address_line:{
+                secondaryAddressLine:{
                     type: String,
                     required: true
                 },
@@ -32,11 +32,11 @@ const userAccountSchema = new Schema(
                     type: String,
                     required: true
                 },
-                state_province_region:{
+                province:{
                     type: String,
                     required: true
                 },
-                postal_code:{
+                postalCode:{
                     type: Number,
                     required: true
                 }
@@ -55,7 +55,7 @@ const userAccountSchema = new Schema(
                     },
                     required: true
                 },
-                bank_account:{
+                bankAccount:{
                     type: Number,
                     required: true
                 },
@@ -63,7 +63,7 @@ const userAccountSchema = new Schema(
                     type: Number,
                     required: true
                 },
-                semi_monthly: {
+                semiMonthly: {
                     type: Number
                 }
             }
@@ -71,7 +71,7 @@ const userAccountSchema = new Schema(
         email: {
             type: String,
             lowercase: true,
-            // unique: true,
+            unique: true,
             required: true,
             trim: true,
             validate: {
@@ -86,7 +86,7 @@ const userAccountSchema = new Schema(
             trim: true,
             minLength: 5
         },
-        phone_number: {
+        phoneNumber: {
             type: String,
             match: /^(639)\d{9}$/,
             required: true
@@ -116,7 +116,7 @@ const userAccountSchema = new Schema(
             },
             required: true
         },
-        immediate_supervisor: {
+        immediateSupervisor: {
             type: String,
             required: true
         },
@@ -124,14 +124,19 @@ const userAccountSchema = new Schema(
             type: Boolean,
             default: true
         },
-        start_date: {
+        startDate: {
             type: Date,
             required: true,
             min: "2000-01-01"
         },
-        end_date: {
+        endDate: {
             type: Date,
             min: "2000-01-01"
+        },
+        dateOfBirth: {
+            type: Date,
+            required: true,
+            min: "1950-01-01"
         }
     },
     {
@@ -146,7 +151,7 @@ const userAccountSchema = new Schema(
 userAccountSchema.pre(
     "save", 
     async function(next) {
-        this.financial.semi_monthly = this.financial.salary/2;
+        this.financial.semiMonthly = this.financial.salary/2;
         next();
     }
 ); 
